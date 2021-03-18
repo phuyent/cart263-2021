@@ -6,9 +6,7 @@ and then centring the canvas (and anything else)
 using the CSS Grid.
 
 Also hides overflow.
-
-**********************************************/
-
+***********************************************/
 body {
   padding: 0;
   margin: 0;
