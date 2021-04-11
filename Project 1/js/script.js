@@ -96,6 +96,9 @@ function gameTitle() {
   push();
   imageMode(CORNER);
   image(titleImage,0,0,windowWidth,windowHeight);
+  textSize(20);
+  fill(255);
+  text("Press spacebar to enter game",width*0.43,height*0.155);
   pop();
 
 }
@@ -115,7 +118,7 @@ function roomOne() {
   fill(255);
   ellipse(width*0.495,height*0.45, 20, 20);
   textSize(12);
-    text("center",width*0.45,height*0.25);
+  text("center",width*0.45,height*0.25);
 
 
   //Draw a white rectangle for the alive door on the right of the room
@@ -125,7 +128,7 @@ function roomOne() {
   fill(0);
   ellipse(width*0.86,height*0.6, 20, 20);
   textSize(12);
-    text("right",width*0.8,height*0.34);
+  text("right",width*0.8,height*0.34);
 
   pop();
 
@@ -154,21 +157,32 @@ function roomOne() {
 
 //roomTwo()
 //
-//Design room one with two doors and a timer of 90s
+//Design room two with two doors and a timer of 80s
 function roomTwo() {
   push();
   //The walls are all grey
-  background(255);
-  //Draw a black rectangle for the death door in the middle of the room
-  fill(value1);
-  rect(width*0.4,height*0.2,150,300);
-
-  image(deathDoorImage,width/2,height/4,200,100);
-  //Draw a white rectangle for the alive door on the right of the room
+  background(128);
+  //Draw a white rectangle for the alive door in the middle of the room
   fill(value2);
-  rect(width*0.8,height/4,100,200);
+  rect(width*0.4,height*0.2,160,320);
+  image(aliveDoorImage,width*0.413,height*0.25,120,120);
+  //Doorknob
+  fill(0);
+  ellipse(width*0.495,height*0.45, 20, 20);
+  textSize(12);
+  text("center",width*0.45,height*0.25);
 
-  image(aliveDoorImage,width*0.8,height/4,200,100);
+
+  //Draw a black rectangle for the death door on the right of the room
+  fill(value1);
+  rect(width*0.75,height*0.3,180,360);
+  image(deathDoorImage,width*0.763,height*0.35,140,140);
+  //Doorknob
+  fill(255);
+  ellipse(width*0.86,height*0.6, 20, 20);
+  textSize(12);
+  text("right",width*0.8,height*0.34);
+
   pop();
 
   ////***SET UP THE TIMER***////
@@ -177,8 +191,8 @@ function roomTwo() {
   textStyle('LCDAT&TPhoneTimeDate.ttf');
   textAlign(CENTER);
   textSize(30);
-  //Display the countdown at the top left of the canvas (80 seconds)
-  text('Time:'+timer-10,100,50);
+  //Display the countdown at the top left of the canvas
+  text('Time:'+timer,100,50);
   // frameCount: this keeps track of the number of times the program has gone throught the code, 60 = 1 second
   // %: this is the Modulo operator, it divides numbers and evaluates to the remainder: 17 % 5 evaluates to 2 remainder
   // This can be used to determine if the number on the left is divisible by the number on the right
@@ -193,14 +207,68 @@ function roomTwo() {
   }
 }
 
+//roomOne()
+//
+//Design room three with two doors and a timer of 90s
+function roomThree() {
+  push();
+  //The walls are all grey
+  background(128);
+  //Draw a white rectangle for the alive door in the middle of the room
+  fill(value2);
+  rect(width*0.4,height*0.2,160,320);
+  image(aliveDoorImage,width*0.413,height*0.25,120,120);
+  //Doorknob
+  fill(0);
+  ellipse(width*0.495,height*0.45, 20, 20);
+  textSize(12);
+  text("center",width*0.45,height*0.25);
+
+
+  //Draw a black rectangle for the alive door on the right of the room
+  fill(value1);
+  rect(width*0.75,height*0.3,180,360);
+  image(deathDoorImage,width*0.763,height*0.35,140,140);
+  //Doorknob
+  fill(255);
+  ellipse(width*0.86,height*0.6, 20, 20);
+  textSize(12);
+  text("right",width*0.8,height*0.34);
+
+  pop();
+
+  ////***SET UP THE TIMER***////
+  //Source: https://editor.p5js.org/marynotari/sketches/S1T2ZTMp-
+  //Styling the font
+  textStyle('LCDAT&TPhoneTimeDate.ttf');
+  textAlign(CENTER);
+  textSize(30);
+  //Display the countdown at the top left of the canvas
+  text('Time:'+timer,100,50);
+  // frameCount: this keeps track of the number of times the program has gone throught the code, 60 = 1 second
+  // %: this is the Modulo operator, it divides numbers and evaluates to the remainder: 17 % 5 evaluates to 2 remainder
+  // This can be used to determine if the number on the left is divisible by the number on the right
+  if (frameCount % 60 == 0 && timer > 0) {
+    //If the frameCount is divisible by 60, then a second has passed.
+    //It will stop at 0
+    timer --;
+  }
+  if (timer == 0) {
+    text("GAME OVER", width/2, height/3);
+    text("Press 'Enter' to start again", width/2,height/5);
+  }
+}
+
+
 //gameEnd()
 //
 //End the game when wrong door is chosen
 function gameEnd(){
   background(0);
   textStyle('LCDAT&TPhoneTimeDate');
+  fill(255);
   textAlign(CENTER);
-  text("GAME OVER", width/2, height/5);
+  text("GAME OVER", width/2, height/2);
 }
 
 //mouseClicked()
@@ -209,6 +277,10 @@ function mouseClicked() {
  if (value1 === 0 && state === 1) {
   state = 2;
 }
+else if ( value2 === 255 && state === 2) {
+ state === 3;
+ }
+
 else {
   state = 4;
  }
