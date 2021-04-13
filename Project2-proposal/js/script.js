@@ -25,10 +25,9 @@ var content = [
         "Elevators that transport Londoners out of the subway up to their office blocks using upward, downward and sideways movement. \r\n"
     },
 ]
-console.log($('.room__content'));
+
 $('.room__content').each(function(i,el){
   var el = $(el);
-  console.log(el);
   var img = '<img src="'+content[i].image+'" />';
   el.append(img);
 });
