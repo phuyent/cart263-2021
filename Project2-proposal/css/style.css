@@ -17,8 +17,7 @@ Also hides overflow.
 	height: 100vh;
 	perspective: 2000px;
   max-width:100%;
-	/***Brighter yellow for the ceiling***/
-  background:#ffff99;
+  background:#ebc034;
 
 }
 
@@ -81,11 +80,10 @@ Also hides overflow.
 	transform-origin: 0 50%;
 }
 
-/***Brighter yellow for the floor***/
 .room__side--bottom {
 	width: 100vw; /* depth */
 	height: 4000px;
-	background:#ffff99;
+	background:#ebc034;
 
 	transform: rotate3d(1, 0, 0, 90deg) translate3d(0, -4000px, 0);
 	transform-origin: 50% 0%;
