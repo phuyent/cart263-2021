@@ -17,7 +17,7 @@ Also hides overflow.
 	height: 100vh;
 	perspective: 2000px;
   max-width:100%;
-  background:#ebc034;
+  background:;
 
 }
 
@@ -55,14 +55,15 @@ Also hides overflow.
 .room__side--right {
 	width: 4000px; /* depth */
 	height: 100vh;
-	background: #ebc034;
+	background: ;
+		box-shadow: 0 0 0 2px ;
 }
 
 .room__side--back {
 	width: 100vw;
 	height: 100vh;
-	background: #ebc034;
-	box-shadow: 0 0 0 2px #ebc034;
+	background: ;
+	box-shadow: 0 0 0 2px ;
 	transform: translate3d(0, 0, -4000px) rotate3d(1,0,0,0.1deg) rotate3d(1,0,0,0deg);
 	/* Rotation due to rendering bug in Chrome when loader slides up (images seem cut off) */
 }
@@ -83,7 +84,7 @@ Also hides overflow.
 .room__side--bottom {
 	width: 100vw; /* depth */
 	height: 4000px;
-	background:#ebc034;
+	background:;
 
 	transform: rotate3d(1, 0, 0, 90deg) translate3d(0, -4000px, 0);
 	transform-origin: 50% 0%;
