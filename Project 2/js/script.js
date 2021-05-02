@@ -90,8 +90,19 @@ function roomOne() {
         "assets/images/scene2.JPG",
     },
   ]
+background(255);
+rectMode(CENTER);
+let wall1= rect(width/2,height*0.4,500,400);
 
+line(550,104,50,250,900,50);
+line(550,504,50,750,1400,50);
+line(1050,104,1500,250,900,1500);
+line(1050,504,1500,650,1300,1500);
+stroke(0);
 }
+
+
+
 
 
 //roomTwo()
@@ -117,4 +128,14 @@ function end(){
   imageMode(CORNER);
   image(endImage,0,0,windowWidth,windowHeight);
   pop();
+}
+
+//mouseClicked()
+//
+//What happens when mouse click at each state
+function mousePressed() {
+  if (state === 0) {
+    state = 1;
+  }
+
 }
