@@ -22,8 +22,15 @@ let roomOneImage6;
 let wallBackground2;
 let roomTwoImage1;
 let roomTwoImage2;
+let roomTwoImage3;
+let roomTwoImage4;
+let roomTwoImage5;
+let roomTwoImage6;
 
-
+//Variables for sounds
+let roomTwoMusic;
+let roomThreeMusic;
+let roomFourMusic;
 
 
 //Variable for facing wall in the room
@@ -49,8 +56,15 @@ function preload() {
 wallBackground2 = loadImage(`assets/images/photos-rooms/room2/wall.JPG`);
 roomTwoImage1 = loadImage(`assets/images/photos-rooms/room2/RE1.png`);
 roomTwoImage2 = loadImage(`assets/images/photos-rooms/room2/RE2.png`);
+roomTwoImage3 = loadImage(`assets/images/photos-rooms/room2/RE3.png`);
+roomTwoImage4 = loadImage(`assets/images/photos-rooms/room2/RE4.png`);
+roomTwoImage5 = loadImage(`assets/images/photos-rooms/room2/RE5.png`);
+roomTwoImage6 = loadImage(`assets/images/photos-rooms/room2/RE6.png`);
 
-
+//Preload all the sound files
+roomTwoMusic = new Audio('assets/sounds/Vivaldi.mp3');
+roomThreeMusic = new Audio('assets/sounds/Meditation.mp3');
+roomFourMusic = new Audio('assets/sounds/remusic.mp3');
 }
 
 //Description of setup
@@ -170,11 +184,7 @@ function roomOne() {
       noFill();
       rectMode(CENTER);
       rect(width/2,height*0.5,950,600);
-      //Frames
-      rectMode(CORNER);
-      strokeWeight(6);
-      rect(850,100,400,500);
-      rect(400,100,400,500);
+
       //Side walls
       strokeWeight(1);
       line(325,80,10,0,0,0);
@@ -218,6 +228,136 @@ function roomOne() {
 //Create a main wall and use lines to create 3D dimensions
 function roomTwo() {
 
+  //Play music
+  roomTwoMusic.play();
+
+  switch (wall) {
+    case 0:
+    centerWall();
+    break;
+
+    case 1:
+    leftWall();
+    break;
+
+    case 2:
+    rightWall();
+    break;
+  }
+
+  function centerWall() {
+    push();
+    imageMode(CORNER);
+    //Display the wall behind
+    image(wallBackground2,0,0,windowWidth,windowHeight);
+    //Display photos
+    image(roomTwoImage1,965,150,300,400);
+    image(roomTwoImage2,350,150,600,400);
+    //Frames
+    push();
+    noFill();
+    rectMode(CORNER);
+    strokeWeight(6);
+    stroke(217,173,0)
+    rect(965,150,300,400);
+    rect(350,150,600,400);
+    pop();
+
+    //Main wall
+    noFill();
+    rectMode(CENTER);
+    rect(width/2,height*0.5,950,600);
+    //Side walls
+    line(325,80,10,0,0,0);
+    line(325,680,60,790,1500,10);
+    line(1275,80,1500,0,800,1000);
+    line(1275,679,1500,750,2000,1500);
+    stroke(255);
+    pop();
+    //Some text to navigate
+    textSize(20);
+    fill(0);
+    text("Use LEFT ARROW & RIGHT ARROW to move between walls",width*0.35,height*0.95);
+    //Notes under paintings
+    textSize(15);
+    fill(0);
+    stroke(255);
+    text("Mona Lisa \nby Leonardo Da Vinci",965,580);
+    text("Primavera (Allegory of Spring)\nby Sandro Botticelli (Alessandro di Mariano Filipepi) ",350,580);
+    }
+    function leftWall() {
+      push();
+      imageMode(CORNER);
+      //Display the wall behind
+      image(wallBackground2,0,0,windowWidth,windowHeight);
+      //Display photos
+      imageMode(CORNER);
+      image(roomTwoImage3,850,200,400,200);
+      image(roomTwoImage4,400,200,400,250);
+      //Main wall
+      noFill();
+      rectMode(CENTER);
+      rect(width/2,height*0.5,950,600);
+      //Frames
+      push();
+      noFill();
+      rectMode(CORNER);
+      strokeWeight(6);
+      stroke(217,173,0)
+      rect(850,200,400,200);
+      rect(400,200,400,250);
+      pop();
+      //Side walls
+      strokeWeight(1);
+      line(325,80,10,0,0,0);
+      line(325,680,60,790,1500,10);
+      line(1275,80,1500,0,800,1000);
+      line(1275,679,1500,750,2000,1500);
+      stroke(255);
+      //Notes under paintings
+      textSize(15);
+      fill(0);
+      text("The Creation of Adam \nMichelangelo Buonarroti",850,420);
+      text("The Last Supper \nby Leonardo Da Vinci ",400,470);
+      pop();
+    }
+    function rightWall() {
+      push();
+      imageMode(CORNER);
+      //Display the wall behind
+      image(wallBackground2,0,0,windowWidth,windowHeight);
+      //Display photos
+      imageMode(CORNER);
+      image(roomTwoImage5,850,150,400,400);
+      image(roomTwoImage6,400,150,400,300);
+      //Main wall
+      noFill();
+      rectMode(CENTER);
+      rect(width/2,height*0.5,950,600);
+      //Frames
+      push();
+      noFill();
+      rectMode(CORNER);
+      strokeWeight(6);
+      stroke(217,173,0)
+      rect(850,150,400,400);
+      rect(400,150,400,300);
+      pop();
+      //Side walls
+      strokeWeight(1);
+      line(325,80,10,0,0,0);
+      line(325,680,60,790,1500,10);
+      line(1275,80,1500,0,800,1000);
+      line(1275,679,1500,750,2000,1500);
+      stroke(255);
+      //Notes under paintings
+      textSize(15);
+      fill(0);
+      text("The School of Athens \nRaphael",850,570);
+      text("The Kiss of Judas \nby Giotto di Bondone ",400,470);
+      pop();
+
+    }
 }
 
 //gameEnd()
