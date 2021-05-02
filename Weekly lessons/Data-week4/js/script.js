@@ -2,31 +2,33 @@
 
 
 
-let jokeText = ``; // The current joke.
-let jokeData = undefined; // The loaded joke data
+let tarotData = undefined;
+let fortune = `No fortune found yet...`;
 
 function preload() {
-  jokeData = loadJSON(`https://official-joke-api.appspot.com/jokes/programming/random`);
+tarotData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`);
 }
-
+/**
+Description of setup
+*/
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+createCanvas(windowWidth,windowHeight);
 
-  // We get the joke object as the first element of the array
-  let joke = jokeData[0];
-  // Set the joke text as the setup and punchline properties together
-  jokeText = `${joke.setup}\n\n${joke.punchline}`;
+let card = random(tarotData.tarot_interpretations);
+fortune = random(card.fortune_telling);
+
 }
 
+/**
+Description of draw()
+*/
 function draw() {
-  background(0);
+background(255);
+push();
+textSize(32);
+textAlign(CENTER);
+fill(0);
+text(fortune, width/2, height/2);
+pop();
 
-  // Display the current joke
-  push();
-  fill(255, 255, 0);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  rectMode(CENTER);
-  text(jokeText, width / 2, height / 2, width / 2, height / 2);
-  pop();
 }

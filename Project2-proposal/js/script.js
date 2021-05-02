@@ -226,6 +226,7 @@ function roomTwo() {
   //Display photos
   image(roomTwoImage1,850,100,400,500);
   image(roomTwoImage2,400,100,400,500);
+
   //Main wall
   noFill();
   rectMode(CENTER);
@@ -243,7 +244,6 @@ function roomTwo() {
 //Create a main wall and use lines to create 3D dimensions
 function roomThree() {
   push();
-
   //Main wall
   noFill();
   rectMode(CENTER);
@@ -300,72 +300,25 @@ function end(){
   pop();
 }
 
-//setupButton()
-//
-//Arrange the buttons to navigate between rooms
-function setupButton() {
-  // Create room 1 button
-    var $button1 = $("<div class='button1' id = 'change-button'></div>").text("room1").button().click(changeRoom);
-    //Add to the css body
-    $body.append($button1);
 
-}
-
-
-//changeRoom()
-//
-//What happens when mouse click at each button
-function changeRoom() {
-  if (button0) {
-    room = 0;
-  }
-  else if (button1) {
-    clear(room);
-      room = 1;
-    }
-  else if (button2) {
-    clear();
-      room = 2;
-    }
-  else if (button3) {
-    clear();
-      room = 3;
-    }
-  else if (button4) {
-    clear();
-      room = 4;
-    }
-  else if (button5) {
-    clear();
-      room = 5;
-    }
-  else if (button6) {
-    clear();
-        room = 6;
-      }
-}
-
-//changeWall()
-//
-//Change the walls in a room by keycodes
-function changeWall() {
-  if (keyCode === 37 && wall === 0) {
+function keyPressed() {
+  if (wall === 0 && keyCode === 37) {
     wall = 1;
   }
-  if (keyCode === 39 && wall === 0) {
+  else if (wall === 0 && keyCode === 39) {
     wall = 2;
   }
-  if (keyCode === 37 && wall === 1) {
+  else if (wall === 1 && keyCode === 37) {
     wall = 2;
   }
-  if (keyCode === 39 && wall === 2) {
-    wall= 1;
-  }
-  if (keyCode === 37 && wall === 2) {
-    wall = 0 ;
-  }
-  if (keyCode === 39 && wall === 1) {
+  else if (wall === 1 && keyCode === 39) {
     wall = 0;
+  }
+  else if (wall === 2 && keyCode === 37) {
+    wall = 0;
+  }
+  else if (wall === 2 && keyCode === 39) {
+    wall = 1;
   }
 
 }

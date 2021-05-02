@@ -27,6 +27,13 @@ let roomTwoImage4;
 let roomTwoImage5;
 let roomTwoImage6;
 
+//Variable for wall and pictures in room three
+let roomThreeBackground;
+
+//Variable for fortune-telling in room 3
+let fortuneData = undefined;
+let fortune = `No fortune found yet...`;
+
 //Variables for sounds
 let roomTwoMusic;
 let roomThreeMusic;
@@ -52,7 +59,7 @@ function preload() {
   roomOneImage5 = loadImage(`assets/images/photos-rooms/room1/modern5.JPG`);
   roomOneImage6 = loadImage(`assets/images/photos-rooms/room1/modern6.JPG`);
 
-//Preload pictures and music in roomTwo
+//Preload pictures in roomTwo
 wallBackground2 = loadImage(`assets/images/photos-rooms/room2/wall.JPG`);
 roomTwoImage1 = loadImage(`assets/images/photos-rooms/room2/RE1.png`);
 roomTwoImage2 = loadImage(`assets/images/photos-rooms/room2/RE2.png`);
@@ -60,6 +67,11 @@ roomTwoImage3 = loadImage(`assets/images/photos-rooms/room2/RE3.png`);
 roomTwoImage4 = loadImage(`assets/images/photos-rooms/room2/RE4.png`);
 roomTwoImage5 = loadImage(`assets/images/photos-rooms/room2/RE5.png`);
 roomTwoImage6 = loadImage(`assets/images/photos-rooms/room2/RE6.png`);
+
+//Preload pictures in roomThree
+roomThreeBackground = loadImage(`assets/images/photos-rooms/room3/star1.jpg`);
+//Preload JSON data
+fortuneData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`);
 
 //Preload all the sound files
 roomTwoMusic = new Audio('assets/sounds/Vivaldi.mp3');
@@ -243,6 +255,7 @@ function roomTwo() {
     case 2:
     rightWall();
     break;
+
   }
 
   function centerWall() {
@@ -358,6 +371,39 @@ function roomTwo() {
       pop();
 
     }
+
+}
+
+//roomThree
+//
+//Create a peaceful space with some fortune-telling
+function roomThree() {
+  //Play music
+  roomTwoMusic.pause();
+  roomThreeMusic.play();
+  //Background
+  imageMode(CORNER);
+  //Display the wall behind
+  image(roomThreeBackground,0,0,windowWidth,windowHeight);
+
+  //Text setting for predictions
+  textSize(30);
+  textAlign(CENTER);
+  text(fortune, width/2, height/2);
+  stroke(255);
+  text("Hit Spacebar to peak into the future",width*0.50,height*0.95);
+
+  //Main wall
+  noFill();
+  rectMode(CENTER);
+  rect(width/2,height*0.5,950,600);
+  //Side walls
+
+  line(325,80,10,0,0,0);
+  line(325,680,60,790,1500,10);
+  line(1275,80,1500,0,800,1000);
+  line(1275,679,1500,750,2000,1500);
+
 }
 
 //gameEnd()
@@ -380,6 +426,22 @@ function mousePressed() {
     clear();
     room = 2;
   }
+  else if (room === 2){
+    clear();
+    room = 3;
+  }
+  else if (room === 3){
+    clear();
+    room = 4;
+  }
+  else if (room === 4){
+    clear();
+    room = 5;
+  }
+  else if (room === 5){
+    clear();
+    room = 6;
+  }
 }
 
 function keyPressed() {
@@ -401,5 +463,9 @@ function keyPressed() {
   else if (wall === 2 && keyCode === 39) {
     wall = 1;
   }
-
+if (room === 3 && keyCode === 32) {
+  //Randomly distribute predictions
+  let card = random(fortuneData.tarot_interpretations);
+  fortune = random(card.fortune_telling);
+}
 }
